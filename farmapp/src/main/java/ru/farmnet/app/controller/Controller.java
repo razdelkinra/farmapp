@@ -11,10 +11,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import ru.farmnet.app.exception.AppException;
-import ru.farmnet.app.utils.DynamicGraphicsLoader;
+import ru.farmnet.app.fxcomponent.Dialog;
 import ru.farmnet.app.service.LibService;
 import ru.farmnet.app.service.LibServiceImpl;
 import ru.farmnet.app.utils.CheckSumCalculator;
+import ru.farmnet.app.utils.DynamicGraphicsLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class Controller {
                     addTab(DynamicGraphicsLoader.load());
                 }
             } catch (AppException e) {
-                log.error(e.getMessage()); //TODO: выброси окно c ошибкой
+                Dialog.showErrorDialog(e);
             }
         }
     }

@@ -7,7 +7,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import ru.farmnet.app.exception.AppException;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 public class RemoteFileDownloader {
 

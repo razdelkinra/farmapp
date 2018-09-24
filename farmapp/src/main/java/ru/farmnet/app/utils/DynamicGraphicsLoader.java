@@ -23,7 +23,7 @@ public class DynamicGraphicsLoader {
             InputStream is = cl.getResourceAsStream("fxml/external.fxml");
             return FileConverter.convertToFile(is, EXTERNAL_GRAPHICS);
         } catch (IOException e) {
-            throw new AppException("Error extract file with graphics");
+            throw new AppException("Error loading graphics from the uploaded file");
         }
     }
 }

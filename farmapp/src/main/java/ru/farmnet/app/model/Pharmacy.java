@@ -2,8 +2,8 @@ package ru.farmnet.app.model;
 
 public class Pharmacy {
 
-    private  String name;
-    private  String address;
+    private String name;
+    private String address;
 
     public String getName() {
         return name;

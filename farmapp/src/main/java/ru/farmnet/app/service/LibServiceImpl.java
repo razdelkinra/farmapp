@@ -1,8 +1,8 @@
 package ru.farmnet.app.service;
 
-import ru.farmnet.app.exception.AppException;
 import ru.farmnet.app.db.CheckSumDao;
 import ru.farmnet.app.db.CheckSumDaoImpl;
+import ru.farmnet.app.exception.AppException;
 
 import java.sql.SQLException;
 
