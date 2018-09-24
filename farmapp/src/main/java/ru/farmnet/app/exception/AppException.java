@@ -1,4 +1,4 @@
-package ru.farmnet.app;
+package ru.farmnet.app.exception;
 
 /**
  * Исключение при работе приложения

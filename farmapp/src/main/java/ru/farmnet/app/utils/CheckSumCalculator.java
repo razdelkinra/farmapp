@@ -2,7 +2,7 @@ package ru.farmnet.app.utils;
 
 
 import lombok.extern.slf4j.Slf4j;
-import ru.farmnet.app.AppException;
+import ru.farmnet.app.exception.AppException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +13,9 @@ import java.security.NoSuchAlgorithmException;
 @Slf4j
 public class CheckSumCalculator {
 
+    /**
+     * Метод для вычисления контрольной суммы библиотеки
+     */
     public static String getCheckSumFile(File file) throws AppException {
         StringBuilder checkSum = new StringBuilder();
         try {

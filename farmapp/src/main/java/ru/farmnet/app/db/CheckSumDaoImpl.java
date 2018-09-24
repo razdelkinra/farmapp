@@ -1,7 +1,7 @@
 package ru.farmnet.app.db;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.farmnet.app.AppException;
+import ru.farmnet.app.exception.AppException;
 
 import java.sql.*;
 
@@ -14,7 +14,7 @@ public class CheckSumDaoImpl implements CheckSumDao {
 
 
     @Override
-    public String getCheckSum() throws SQLException {
+    public String getCheckSum() throws SQLException, AppException {
         String checkSum = "";
         try (Connection conn = DataSource.getInstance().getConnection();
              Statement stmt = conn.createStatement()) {
@@ -23,12 +23,12 @@ public class CheckSumDaoImpl implements CheckSumDao {
                 checkSum = rs.getString("check_sum");
             }
             rs.close();
+            return checkSum;
         }
-        return checkSum;
     }
 
     @Override
-    public void updateCheckSum(String checkSum) throws SQLException {
+    public void updateCheckSum(String checkSum) throws SQLException, AppException {
         try (Connection conn = DataSource.getInstance().getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_CHECKSUM);
             stmt.setString(1, checkSum);

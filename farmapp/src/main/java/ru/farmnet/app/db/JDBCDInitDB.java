@@ -1,7 +1,7 @@
 package ru.farmnet.app.db;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.farmnet.app.AppException;
+import ru.farmnet.app.exception.AppException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,6 +20,9 @@ public class JDBCDInitDB implements InitDB {
                     + " number       TIMESTAMP DEFAULT CURRENT_TIMESTAMP);'; " +
                     " END";
 
+    /**
+     * Создает таблицу в БД, если она не создана
+     */
     @Override
     public void init() throws AppException {
         try (Connection conn = DataSource.getInstance().getConnection();

@@ -1,6 +1,6 @@
 package ru.farmnet.app.service;
 
-import ru.farmnet.app.AppException;
+import ru.farmnet.app.exception.AppException;
 import ru.farmnet.app.db.CheckSumDao;
 import ru.farmnet.app.db.CheckSumDaoImpl;
 

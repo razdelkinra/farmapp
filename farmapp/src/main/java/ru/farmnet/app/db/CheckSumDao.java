@@ -1,12 +1,23 @@
 package ru.farmnet.app.db;
 
-import ru.farmnet.app.AppException;
+import ru.farmnet.app.exception.AppException;
 
 import java.sql.SQLException;
 
+/**
+ * DAO для соранения и получения контрольной суммы
+ */
 public interface CheckSumDao {
 
-    String getCheckSum() throws AppException, SQLException;
+    /**
+     * Получить контрольную сумму
+     *
+     * @return контрольную сумму
+     */
+    String getCheckSum() throws SQLException, AppException;
 
-    void updateCheckSum(String checkSum) throws AppException, SQLException;
+    /**
+     * Обновить контрольную сумму. В базе хранится только актуальное значение версии
+     */
+    void updateCheckSum(String checkSum) throws SQLException, AppException;
 }

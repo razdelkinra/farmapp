@@ -7,16 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-import ru.farmnet.app.AppException;
-import ru.farmnet.app.DynamicLoadGraphics;
+import ru.farmnet.app.exception.AppException;
+import ru.farmnet.app.utils.DynamicGraphicsLoader;
 import ru.farmnet.app.service.LibService;
 import ru.farmnet.app.service.LibServiceImpl;
 import ru.farmnet.app.utils.CheckSumCalculator;
-import ru.farmnet.app.utils.RemouteFileDownloader;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,20 +43,13 @@ public class Controller {
         if (file != null) {
             try {
                 checksum = CheckSumCalculator.getCheckSumFile(file);
+                if (libService.compareVersion(checksum)) {
+                    //TODO: создай загружаемый файл с сервера так что бы у них checksum были разные. сейчас они совпадают почему то. В if потом поставь '!'
+                    addTab(DynamicGraphicsLoader.load());
+                }
             } catch (AppException e) {
-                log.error(e.getMessage());
+                log.error(e.getMessage()); //TODO: выброси окно c ошибкой
             }
-        }
-
-        try {
-            if (libService.compareVersion(checksum)) {
-                //TODO: создай загружаемый файл с сервера
-                // так что бы у них checksum были разные. сейчас они совпадают почему то. В if потом поставь '!'
-                DynamicLoadGraphics dynamicLoadGraphics = new DynamicLoadGraphics();
-                addTab(dynamicLoadGraphics.load());
-            }
-        } catch (AppException e) {
-            e.getMessage();  //TODO: выброси окно c ошибкой
         }
     }
 
