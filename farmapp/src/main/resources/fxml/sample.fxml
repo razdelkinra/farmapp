@@ -11,7 +11,7 @@
 
     <children>
       <AnchorPane fx:id="newWindow" layoutX="83.0" layoutY="50.0" prefHeight="600.0" prefWidth="800.0" />
-          <Button fx:id="openbutton" layoutX="40.0" layoutY="737.0" mnemonicParsing="false" onAction="#buttonAction" prefHeight="39.0" prefWidth="122.0" text="Open Jar File" />
-          <Button fx:id="chekbutton" layoutX="822.0" layoutY="737.0" mnemonicParsing="false" onAction="#button2Action" prefHeight="39.0" prefWidth="122.0" text="Check CRC" />
+          <Button fx:id="openbutton" layoutX="40.0" layoutY="737.0" mnemonicParsing="false" onAction="#load" prefHeight="39.0" prefWidth="122.0" text="Open Jar File" />
+          <Button fx:id="chekbutton" layoutX="822.0" layoutY="737.0" mnemonicParsing="false" onAction="#compare" prefHeight="39.0" prefWidth="122.0" text="Check CRC" />
     </children>
 </AnchorPane>

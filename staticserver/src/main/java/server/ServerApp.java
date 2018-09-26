@@ -13,7 +13,6 @@ public class ServerApp {
     public static final int PORT = 8083;
 
     public static void main(String[] args) throws LifecycleException {
-
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(PORT);
         Context ctx = tomcat.addContext("/", new File(".").getAbsolutePath());

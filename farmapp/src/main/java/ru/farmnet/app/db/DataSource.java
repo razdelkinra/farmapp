@@ -13,7 +13,7 @@ import java.sql.SQLException;
  */
 public class DataSource {
 
-    static final String JDBC_DRIVER = "org.firebirdsql.jdbc.FBDriver";
+    static final String JDBC_DRIVER = "org.firebirdsql.jdbc.FBDriver"; // TODO: Перенеси в application.properties
     static final String DB_URL = "jdbc:firebirdsql:localhost/3050:";
     static final String USER = "SYSDBA";
     static final String PASSWORD = "masterkey";

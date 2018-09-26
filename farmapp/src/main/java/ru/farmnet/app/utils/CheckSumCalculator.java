@@ -32,7 +32,7 @@ public class CheckSumCalculator {
             for (int i = 0; i < mdbytes.length; i++)
                 checkSum.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));
         } catch (NoSuchAlgorithmException | IOException e) {
-            throw new AppException("Ошибка расчета контрольной суммы");
+            throw new AppException("Error compute the checksum file");
         }
         return checkSum.toString();
     }

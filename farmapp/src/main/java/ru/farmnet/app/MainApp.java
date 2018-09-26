@@ -11,7 +11,6 @@ import ru.farmnet.app.fxcomponent.Dialog;
 
 public class MainApp extends Application {
 
-
     private static String INIT_MESSAGE;
 
     public static void main(String[] args) {
