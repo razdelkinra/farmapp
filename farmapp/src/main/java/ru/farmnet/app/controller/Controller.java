@@ -1,11 +1,9 @@
 package ru.farmnet.app.controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -22,31 +20,40 @@ import java.io.IOException;
 
 @Slf4j
 public class Controller {
-
+    File file;
+    @FXML
+    AnchorPane newWindow;
     @FXML
     private Button openbutton;
     @FXML
     private Button chekbutton;
-
     @FXML
-    private TableView table;
+    private Button testbutton;
 
     @FXML
     public void buttonAction(ActionEvent event) {
-        LibService libService = new LibServiceImpl();
-        String checksum = "";
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Jar file");
         FileChooser.ExtensionFilter extFilter =
                 new FileChooser.ExtensionFilter("Jar files (*.jar)", "*.jar");
         fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(new Stage());
+        file = fileChooser.showOpenDialog(new Stage());
+        Dialog.showAlertWithHeaderText("Сравните версии файлов");
+    }
+
+    @FXML
+    public void button2Action(ActionEvent event) throws IOException {
+        LibService libService = new LibServiceImpl();
+        String checksum = "";
         if (file != null) {
             try {
                 checksum = CheckSumCalculator.getCheckSumFile(file);
-                if (libService.compareVersion(checksum)) {
-                    //TODO: создай загружаемый файл с сервера так что бы у них checksum были разные. сейчас они совпадают почему то. В if потом поставь '!'
+                if (!libService.compareVersion(checksum)) {
                     addTab(DynamicGraphicsLoader.load());
+                    Dialog.showAlertWithHeaderText("Вы пользуетесь старой версией файла. Загружена актуальная версия.");
+                } else {
+                    addTab(DynamicGraphicsLoader.loadFromHdd(file));
+                    Dialog.showAlertWithHeaderText("Вы пользуетесь актуальной версией файла.");
                 }
             } catch (AppException e) {
                 Dialog.showErrorDialog(e);
@@ -59,8 +66,7 @@ public class Controller {
         try {
             loader.setLocation(file.toURL());
             AnchorPane anchorPane = loader.load();
-            ObservableList list = ((TableView) anchorPane.getChildren().get(0).lookup("TableView")).getItems();
-            table.getItems().addAll(list);
+            newWindow.getChildren().setAll(anchorPane);
         } catch (IOException e) {
             throw new AppException("Failed to load data");
         }

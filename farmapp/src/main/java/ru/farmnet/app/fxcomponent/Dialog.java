@@ -6,7 +6,7 @@ public class Dialog {
 
     public static void showAlertWithHeaderText(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("");
+        alert.setTitle("ОК");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

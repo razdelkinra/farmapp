@@ -14,7 +14,7 @@ public class DynamicGraphicsLoader {
     public static final String EXTERNAL_GRAPHICS = "farmapp/src/main/resources/fxml/external.fxml";
 
     /**
-     * Метод для динамической загузки из jar файла с графикой
+     * Метод для динамической загузки fxml файла из jar, который лежит на сервере
      */
     public static File load() throws AppException {
         try {
@@ -26,4 +26,19 @@ public class DynamicGraphicsLoader {
             throw new AppException("Error loading graphics from the uploaded file");
         }
     }
+
+    /**
+     * Метод для динамической загузки fxml файла из jar, который есть у нас на жестком диске
+     */
+
+    public static File loadFromHdd(File file) throws AppException {
+        try {
+            ClassLoader cl = new URLClassLoader(new URL[]{file.toURI().toURL()});
+            InputStream is = cl.getResourceAsStream("fxml/external.fxml");
+            return FileConverter.convertToFile(is, EXTERNAL_GRAPHICS);
+        } catch (IOException e) {
+            throw new AppException("Error loading graphics from the uploaded file");
+        }
+    }
+
 }
